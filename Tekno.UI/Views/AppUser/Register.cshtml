@@ -1,0 +1,74 @@
+﻿@model  Tekno.MODEL.Entity.AppUser
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="login-body">
+    @if (ViewBag.Exists != null)
+    {
+        <span class="text-danger">@ViewBag.Exists</span>
+    }
+    else if (ViewBag.Info != null)
+    {
+        <span class="text-danger">@ViewBag.Info</span>
+    }
+    <div class="container">
+
+        <form class="form-signin" action="/AppUser/Register" method="post" enctype="multipart/form-data">
+            <h2 class="form-signin-heading">registration now</h2>
+            <div class="login-wrap">
+
+                <p>Enter your personal details below</p>
+                @*<input type="text" class="form-control" placeholder="Full Name" autofocus>*@
+                <label> First Name </label>
+                @Html.TextBoxFor(x => x.FirstName, null, new { @class = "form-control", placeholder = "lütfen adınızı yazın" })
+                @Html.ValidationMessageFor(x => x.FirstName, null, new { @class = "text-danger" })
+                @*<input type="text" class="form-control" placeholder="Address" autofocus>*@
+                <label> Last Name </label>
+                @Html.TextBoxFor(x => x.LastName, null, new { @class = "form-control", placeholder = "lütfen soyadınızı yazın" })
+                @Html.ValidationMessageFor(x => x.LastName, null, new { @class = "text-danger" })
+
+
+                <label> E-mail </label>
+                @Html.TextBoxFor(x => x.Email, null, new { @class = "form-control", placeholder = "lütfen mail adresi yazın" })
+                @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+
+                <label> Phone Number </label>
+                @Html.TextBoxFor(x => x.PhoneNumber, null, new { @class = "form-control", placeholder = "lütfen telefon numaranızı yazın" })
+                @Html.ValidationMessageFor(x => x.PhoneNumber, null, new { @class = "text-danger" })
+
+
+                <p> Enter your account details below</p>
+                <label> User Name </label>
+                @Html.TextBoxFor(x => x.Name, null, new { @class = "form-control", placeholder = "lütfen kullanıcı adınızı yazın" })
+                @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+
+                <label> Password </label>
+                @Html.TextBoxFor(x => x.Password, null, new { @class = "form-control", placeholder = "lütfen şifre yazın" })
+                @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger" })
+
+                <label> Password Again </label>
+                @Html.TextBoxFor(x => x.ConfirmPassword, null, new { @class = "form-control", type = "password", placeholder = "lütfen şifre yazın" })
+                @Html.ValidationMessageFor(x => x.ConfirmPassword, null, new { @class = "text-danger" })
+
+                <label>Profile Image</label>
+                @Html.TextBoxFor(x => x.ImagePath, new { type = "file", @class = "form-control" })
+
+
+                <button class="btn btn-lg btn-login btn-block" type="submit">Submit</button>
+
+                <div class="registration">
+                    Already Registered.
+                    @Html.ActionLink("Login", "Login", "AppUser", null, new { @class = "btn btn-danger" })
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+</body>
+

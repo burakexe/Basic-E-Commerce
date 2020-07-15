@@ -1,0 +1,29 @@
+﻿@model List<Tekno.MODEL.Entity.SubCategory>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>SubCategory ID</th>
+            <th>SubCategory Name</th>
+            <th>Description</th>
+            <th>Details</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subcategory in Model)
+        {
+            <tr>
+                <td>@subcategory.ID</td>
+                <td>@subcategory.Name</td>
+                <td>@subcategory.Description</td>
+                <td>@Html.ActionLink("Details", "Detail", new { id = subcategory.ID }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = subcategory.ID }, new { @class = "btn btn-warning" })</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = subcategory.ID }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />

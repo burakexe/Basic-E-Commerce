@@ -1,0 +1,53 @@
+﻿@model List<Tekno.UI.Models.Basket.SelectedProduct>
+
+
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal? toplamTutar = 0;
+}
+
+<h2>MyCart</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ürün ID</th>
+                            <th>Fiyat</th>
+                            <th>Adet</th>
+                            <th>Ara Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            toplamTutar += item.SubTotal;
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Price</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.SubTotal</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                @toplamTutar.ToString()
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="text-center invoice-btn">
+                    <a class="btn btn-danger btn-lg" href="@Url.Action("FinishShopping","Product")"><i class="icon-check"></i> Siparişi Tamamla </a>
+                    <a class="btn btn-info btn-lg" href="@Url.Action("RemoveCart","Product")"><i class="icon-trash"></i> Sepeti Boşalt </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model List<Tekno.MODEL.Entity.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel-heading">
+                <p class="h3">
+                    Kategori Ekleme Sayfası
+
+                    <input type="button" class="btn btn-danger pull-right" value="Geri Dön" onclick="history.back()">
+                    <a href="@Url.Action("Add","Category")" class="btn btn-success pull-right">Yeni Kategori Ekle</a>
+                </p>
+
+
+            </section>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Açıklama</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>
+                                @Html.ActionLink("Güncelle", "Update", new { id = item.ID }, new { @Class = "btn btn-info btn-sm" })
+                                @Html.ActionLink("Sil", "Delete", new { id = item.ID }, new { @Class = "btn btn-danger btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

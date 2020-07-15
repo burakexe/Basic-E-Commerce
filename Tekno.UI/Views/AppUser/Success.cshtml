@@ -1,0 +1,20 @@
+﻿@model Tekno.MODEL.Entity.AppUser
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="login-wrap">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2>Merhaba @Model.Name @Model.LastName</h2>
+            </div>
+            <div class="panel-body">
+                <p>
+                    Talebiniz başarıyla alındı. Kayıt işlemini tamamlamak için, kayıt esnasında girmiş olduğunuz @Model.Email adresine gelen link'e tıklayın.
+
+                </p>
+            </div>
+        </div>
+    </div>
+

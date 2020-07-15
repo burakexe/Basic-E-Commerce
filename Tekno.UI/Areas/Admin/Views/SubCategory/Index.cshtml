@@ -1,0 +1,67 @@
+﻿@model List<Tekno.MODEL.Entity.SubCategory>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <p class="h3">
+                    Alt Kategori Ekleme Sayfası <input type="button" class="btn btn-danger pull-right" value="Geri Dön" onclick="history.back()">
+                    @Html.ActionLink("Yeni Alt Kategori Ekle", "Add", null, new { @class = "btn btn-success pull-right" })
+                </p>
+                @ViewBag.Title
+
+                @if (TempData["Mesaj"] != null)
+                {
+                    <span class="text-warning">@TempData["Mesaj"]</span>
+                }
+
+            </header>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Alt Kategori</th>
+                        <th>Açıklama</th>
+                        <th>Ait Olduğu Kategori</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>
+                                @try
+                                {
+                                    var categories = ViewBag.Categories as List<Tekno.MODEL.Entity.Category>;
+                                    foreach (var category in categories)
+                                    {
+                                        if (category.ID == item.CategoryID)
+                                        {
+                                            <label>@category.Name</label>
+                                        }
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+
+                                    <span>@ex.Message</span>
+                                }
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Güncelle", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Sil", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </div>
+

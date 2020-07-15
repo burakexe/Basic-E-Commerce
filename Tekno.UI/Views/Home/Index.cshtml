@@ -1,0 +1,87 @@
+﻿@model List<Tekno.MODEL.Entity.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-3">
+        <section class="panel">
+            <div class="panel-body">
+                <input type="text" placeholder="Aranacak Kelime" class="form-control">
+            </div>
+        </section>
+        <section class="panel">
+            <header class="panel-heading">
+                Kategoriler
+            </header>
+            @*<div class="panel-body">
+                <ul class="nav prod-cat">
+                    @Html.Action("PartialCategoryListOfSide")
+                </ul>
+            </div>*@
+        </section>
+    </div>
+    <div class="col-md-9">
+        <section class="panel">
+            <div class="panel-body">
+                <div class="pro-sort">
+                    <label class="pro-lab">Sort By</label>
+                    <select id="sortSelect" class="styled hasCustomSelect">
+                        <option>Default Sorting</option>
+                        <option value="price">Price: High to Low</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+                <div class="pro-sort">
+                    <label class="pro-lab">Show</label>
+                    <select class="styled hasCustomSelect">
+                        <option>Result Per Page</option>
+                        <option>2 Per Page</option>
+                        <option>4 Per Page</option>
+                        <option>6 Per Page</option>
+                        <option>8 Per Page</option>
+                        <option>10 Per Page</option>
+                    </select>
+                </div>
+
+                <div class="pull-right">
+                    <ul class="pagination pagination-sm pro-page-list">
+
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div id="content" class="row product-list">
+            @foreach (var item in Model.OrderByDescending(x => x.ID))
+            {
+                <div class="col-md-4">
+                    <section class="panel">
+                        <div class="pro-img-box">
+                            <img src="@item.ImagePath" alt="">
+
+                            <a href="@Url.Action("AddToCart","MyCart",new { id=item.ID})" class="adtocart">
+                                <i class="icon-shopping-cart"></i>
+                            </a>
+                        </div>
+
+                        <div class="panel-body text-center">
+                            <h4>
+                                <a href="#" class="pro-title">
+                                    @item.Name
+                                </a>
+                            </h4>
+                            <p class="price">@item.Price TL</p>
+                        </div>
+                    </section>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/TableSort.js"></script>

@@ -1,0 +1,57 @@
+﻿@model Tekno.MODEL.Entity.AppUser
+
+@{
+    ViewBag.Title = "KullanıcıUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            KULLANICI BİLGİLERİ
+        </div>
+
+        <div class="panel-body">
+            @using (Html.BeginForm("KullanıcıUpdate", "AppUser", FormMethod.Post))
+            {
+
+                <label> Kullanıcı Adı </label>
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "user name", type = "text", style = "width:300px;" })
+                </div>
+                <label> Şifre </label>
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = "password", type = "password", style = "width:300px;" })
+                </div>
+                <label> Ad </label>
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", placeholder = "first name", type = "text", style = "width:300px;" })
+                </div>
+                <label> Soyad </label>
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "last name", type = "text", style = "width:300px;" })
+                </div>
+                <label> E-Posta </label>
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "email", type = "email", style = "width:300px;" })
+                </div>
+                <label> Telefon </label>
+                <div claa="input-group">
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", placeholder = "PhoneNumber", type = "tel", style = "width:300px;" })
+                </div>
+                <label> Doğum Tarihi </label>
+                <div claa="input-group">
+                    @Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control", placeholder = "Birthdate", type = "date", style = "width:300px;" })
+                    <hr />
+                    <input type="submit" value="Güncelle" class="btn btn-success" />
+
+                </div>
+
+
+            }
+        </div>
+    </div>
+
+
+</div>

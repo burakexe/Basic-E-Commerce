@@ -1,0 +1,48 @@
+﻿@model List<Tekno.MODEL.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-bordered">
+    <thead>
+        <p class="h3">
+            Ürünler Sayfası
+            <input type="button" class="btn btn-danger pull-right" value="Geri Dön" onclick="history.back()">
+
+            <a href="@Url.Action("Add","Product")" class="btn btn-success pull-right">Yeni Ürün Ekle</a>
+        </p>
+
+
+        <tr>
+            <th style="width:50px; height:50px;"></th>
+            <th>Ürün Adı</th>
+            <th>Fiyatı</th>
+            <th>Stok Sayısı</th>
+            <th>Yayında ?</th>
+            <th>Güncelle / Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.ImagePath" style="width:50px; height:50px;" />
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Price TL</td>
+                <td>@item.UnitsInStock</td>
+                <td>@item.IsActive</td>
+                <td>
+                    @Html.ActionLink("Güncelle", "Update", new { id = item.ID }, new { @Class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.ID }, new { @Class = "btn btn-danger btn-sm" })
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+

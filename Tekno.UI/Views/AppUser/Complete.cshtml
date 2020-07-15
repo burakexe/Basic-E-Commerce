@@ -1,0 +1,42 @@
+﻿@*@model Tekno.MODEL.Entity.AppUser*@
+
+@{
+    ViewBag.Title = "Complete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (ViewBag.ActivationStatus == 0)
+    {
+        <div class="login-wrap">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2>Aktivasyon Hatası</h2>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Aktivasyon işleminde bir hata meydana geldi!
+                        Lütfen mail adresinize gelen aktivasyon işlemini tamamlayın.
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="login-wrap">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2>Aktivasyon Başarılı!</h2>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Tebrikler!!! hesabınız başarıyla aktifleştirildi. Giriş yapmak için lütfen
+                        <a href="@Url.Action("Index","Home")" class="btn btn-success btn-large">Tıklayın</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+}
+

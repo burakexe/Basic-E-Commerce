@@ -1,0 +1,52 @@
+﻿
+@model Tekno.MODEL.Entity.SubCategory
+
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add</h2>
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Add SubCategory</h3>
+    </div>
+
+    <div class="panel-body">
+        @using (Html.BeginForm("Add", "SubCategory", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label>SubCategory Name</label>
+                @*@Html.TextBoxFor(x => x.Name, null, new { @class = "form-control" })*@
+                <input type="text" name="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                @*@Html.TextBoxFor(x => x.Description, null, new { @class = "form-control" })*@
+                <input type="text" name="Description" class="form-control" />
+            </div>
+
+            <label>Kategori Seçiniz</label>
+            <select name="CategoryID" class="form-control">
+                @if (ViewBag.Categories == null)
+                {
+                    <option value="0">Tanımsız</option>
+                }
+                else
+                {
+                    foreach (var item in ViewBag.Categories)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                }
+            </select>
+
+            <button type="submit" class="btn btn-success">Save</button>
+
+        }
+    </div>
+</div>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />

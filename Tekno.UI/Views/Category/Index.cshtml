@@ -1,0 +1,41 @@
+﻿@model List<Tekno.MODEL.Entity.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel-heading">
+            <a href="@Url.Action("Add","Category")" class="btn btn-default">Ekle</a>
+
+        </section>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Açıklama</th>
+                    <th>Düzenle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <a href="@Url.Action("Update","Category",new { id=item.ID})">Güncelle</a>
+
+                            |
+
+                            <a href="@Url.Action("Remove","Category",new { id=item.ID})" class="btn btn-warning">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
